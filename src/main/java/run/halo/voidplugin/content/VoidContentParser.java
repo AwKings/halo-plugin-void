@@ -38,7 +38,8 @@ public final class VoidContentParser {
     private static final Pattern PHOTOS_BLOCK =
         Pattern.compile("(?:<p>)?\\s*\\[photos(?:[^\\]]*)?\\](.*?)\\[/photos\\]\\s*(?:</p>)?", FLAGS);
     private static final Pattern NOTICE_BLOCK =
-        Pattern.compile("(?:<p>)?\\s*\\[notice(?:[^\\]]*)?\\](.*?)\\[/notice\\]\\s*(?:</p>)?", FLAGS);
+        Pattern.compile("(?:<p>)?\\s*\\[notice(?:[^\\]]*)?\\](.*?)"
+            + "(?:\\[/notice\\]|(?=</p>))\\s*(?:</p>)?", FLAGS);
     private static final Pattern RUBY =
         Pattern.compile("\\{\\{(.*?):(.*?)\\}\\}", FLAGS);
     private static final Pattern LINKS_BLOCK =
