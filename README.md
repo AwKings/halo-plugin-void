@@ -24,8 +24,8 @@ Typecho 主题 [VOID](https://github.com/AlanDecode/Typecho-Theme-VOID) 配套�
 | 浏览量 `viewsNum` | Halo 内核 `post.stats.visit` | ✅ 无需移植 |
 | 字数统计 `wordCount` | 主题侧 JS 统计正文（中文按字、英文按词） | ✅ |
 | 评论归属地（17monipdb） | 未移植（需要 IP 库与后台 UI 扩展） | ❌ |
-| 图片宽高后缀 `#vwid/#vhei` | 改为 CSS 自适应（见下「正文扩展语法」） | 🔁 |
-| 图片排版 `[photos]` | `VoidContentParser` 服务端解析 | ✅ |
+| 图片宽高后缀 `#vwid/#vhei` | `ImageSizeProbe` 渲染时探测宽高（本地读文件头、远程取 HTTP 头并缓存），相册做 justified 排版 | 🔁 |
+| 图片排版 `[photos]` | `VoidContentParser` 服务端解析 + 宽高探测 | ✅ |
 | 提示块 `[notice]` | `VoidContentParser` | ✅ |
 | 注音 `{{字:音}}` | `VoidContentParser` | ✅ |
 | 友链列表 `[links]` | `VoidContentParser` | ✅ |

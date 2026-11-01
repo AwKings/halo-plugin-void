@@ -113,7 +113,7 @@ public final class VoidContentParser {
             }
             StringBuilder block = new StringBuilder("<div class=\"photos\">");
             for (String img : imgs) {
-                block.append(buildFigure(img));
+                block.append(buildFigure(img, true));
             }
             block.append("</div>");
             m.appendReplacement(sb, Matcher.quoteReplacement(bag.hold(block.toString())));
@@ -122,13 +122,29 @@ public final class VoidContentParser {
         return sb.toString();
     }
 
-    private static String buildFigure(String imgTag) {
+    private static String buildFigure(String imgTag, boolean sized) {
         String src = attr(SRC_ATTR, imgTag);
         String alt = attr(ALT_ATTR, imgTag);
         String caption = alt == null ? "" : alt;
+        // 相册里按原始宽高比做 justified 排版；单图保持自适应高度
+        int[] size = sized ? ImageSizeProbe.size(src) : null;
+        String figureAttr = "";
+        String anchorAttr = "";
+        if (size != null) {
+            // 与原主题一致：a 用 padding-top 撑比例盒，flex-grow 与宽高比成正比。
+            // 基准宽度交给 CSS（--ar 乘不同断点的像素值），窄屏才能一行放多张。
+            double ratio = size[1] * 100.0 / size[0];
+            double grow = size[0] * 50.0 / size[1];
+            double ar = (double) size[0] / size[1];
+            figureAttr = String.format(
+                " class=\"size-parsed\" style=\"--ar: %.4f; flex-grow: %.4f\"", ar, grow);
+            anchorAttr = String.format(" style=\"padding-top: %.4f%%\"", ratio);
+        }
         StringBuilder sb = new StringBuilder(256);
-        sb.append("<figure><a data-fancybox=\"gallery\" data-caption=\"").append(escape(caption))
-            .append("\" href=\"").append(escape(src)).append("\" class=\"void-img\">")
+        sb.append("<figure").append(figureAttr)
+            .append("><a data-fancybox=\"gallery\" data-caption=\"").append(escape(caption))
+            .append("\" href=\"").append(escape(src)).append("\" class=\"void-img\"")
+            .append(anchorAttr).append(">")
             .append("<img src=\"").append(escape(src)).append("\" alt=\"").append(escape(caption))
             .append("\" loading=\"lazy\"></a>");
         if (!caption.isBlank()) {
@@ -179,7 +195,7 @@ public final class VoidContentParser {
 
     private static String parseFigures(String html, Bag bag) {
         // 独占一段的图片：<p><img></p> → <figure>
-        String s = replaceAll(IMG_IN_P, html, m -> bag.hold(buildFigure(m.group(1))));
+        String s = replaceAll(IMG_IN_P, html, m -> bag.hold(buildFigure(m.group(1), false)));
         // 段落里的行内图片：包一层可点击的链接
         s = replaceAll(IMG, s, m -> {
             String img = m.group();
