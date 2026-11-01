@@ -4,7 +4,7 @@ Typecho 主题 [VOID](https://github.com/AlanDecode/Typecho-Theme-VOID) 配套�
 
 移植者：awking。原作者：熊猫小A（https://blog.imalan.cn）。
 
-移植说明（主题 + 插件一起讲）：http://163.192.199.131:8090/archives/halo-theme-void
+移植说明（主题 + 插件一起讲）：https://blog.sanmizu.com/archives/halo-theme-void
 主题仓库：https://github.com/AwKings/halo-theme-void
 
 原插件是 PHP + 直接改数据库（给 `contents` 加 `likes/wordCount/viewsNum`，给 `comments` 加 `likes/dislikes`，另建 `votes` 表）。Halo 没有这些字段，所以这里改成：

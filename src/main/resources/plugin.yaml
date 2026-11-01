@@ -9,7 +9,7 @@ spec:
   author:
     name: awking
   logo: logo.png
-  homepage: http://163.192.199.131:8090/archives/halo-theme-void
+  homepage: https://blog.sanmizu.com/archives/halo-theme-void
   repo: https://github.com/AwKings/halo-plugin-void
   issues: https://github.com/AwKings/halo-plugin-void/issues
   displayName: "VOID 增强"
