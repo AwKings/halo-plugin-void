@@ -24,7 +24,31 @@ Typecho 主题 [VOID](https://github.com/AlanDecode/Typecho-Theme-VOID) 配套�
 | 浏览量 `viewsNum` | Halo 内核 `post.stats.visit` | ✅ 无需移植 |
 | 字数统计 `wordCount` | 主题侧 JS 统计正文（中文按字、英文按词） | ✅ |
 | 评论归属地（17monipdb） | 未移植（需要 IP 库与后台 UI 扩展） | ❌ |
-| 图片宽高后缀 `#vwid/#vhei` | 未移植（Halo 编辑器不写入尺寸） | ❌ |
+| 图片宽高后缀 `#vwid/#vhei` | 改为 CSS 自适应（见下「正文扩展语法」） | 🔁 |
+| 图片排版 `[photos]` | `VoidContentParser` 服务端解析 | ✅ |
+| 提示块 `[notice]` | `VoidContentParser` | ✅ |
+| 注音 `{{字:音}}` | `VoidContentParser` | ✅ |
+| 友链列表 `[links]` | `VoidContentParser` | ✅ |
+| 标题锚点 `toc_N` | `VoidContentParser` | ✅ |
+
+## 正文扩展语法
+
+插件实现 `ReactivePostContentHandler`，在正文输出到主题前做一遍解析，
+因此这些语法在 Markdown 与富文本编辑器里都能用，且不依赖前端 JS。
+解析前会保护 `<pre>` / `<code>` 区域，代码示例里的同名标记不会被误伤；
+解析抛异常时原样返回正文，不会让页面 500。
+
+| 写法 | 结果 |
+| --- | --- |
+| `[photos]` … `[/photos]` 包住若干图片 | `.photos` 相册网格 + fancybox 灯箱 |
+| `[notice]文本[/notice]` | `<p class="notice">` 提示块 |
+| `{{漢字:かんじ}}` | `<ruby>` 注音 |
+| `[links]` 内每行 `[名称](url)+(缩略图)` | 友链卡片列表 |
+| 普通图片 | 自动包 `<figure>` + 灯箱 |
+| `h2`–`h6` | 自动补 `id="toc_N"` |
+| ` ```c++ ` / ` ```c# ` / ` ```f# ` / ` ```objective-c ` | 归一为 Prism 语言名 |
+
+配套主题的 `templates/assets/css/void-content.css` 提供这些结构的样式。
 
 ## API
 
