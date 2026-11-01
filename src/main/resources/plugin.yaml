@@ -1,0 +1,19 @@
+# Refer https://docs.halo.run/developer-guide/plugin/basics/manifest
+
+apiVersion: plugin.halo.run/v1alpha1
+kind: Plugin
+metadata:
+  name: plugin-void
+spec:
+  requires: ">=2.22.0"
+  author:
+    name: awking
+  logo: logo.png
+  homepage: http://163.192.199.131:8090/archives/halo-theme-void
+  repo: https://github.com/AwKings/halo-plugin-void
+  issues: https://github.com/AwKings/halo-plugin-void/issues
+  displayName: "VOID 增强"
+  description: "Typecho 版 VOID 配套插件的 Halo 移植，移植者 awking。原作者：熊猫小A（https://blog.imalan.cn）。提供文章点赞与评论赞踩（按 IP 去重）、访客互动记录。"
+  license:
+    - name: "MIT"
+      url: "https://github.com/AwKings/halo-plugin-void/blob/main/LICENSE"

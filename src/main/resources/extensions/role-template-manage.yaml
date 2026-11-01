@@ -1,0 +1,18 @@
+apiVersion: v1alpha1
+kind: Role
+metadata:
+  name: plugin-void-view-activity
+  labels:
+    halo.run/role-template: "true"
+    halo.run/hidden: "true"
+  annotations:
+    rbac.authorization.halo.run/module: "VOID 互动"
+    rbac.authorization.halo.run/display-name: "查看访客互动"
+rules:
+  # GET /apis/console.api.void.halo.run/v1alpha1/activity
+  - apiGroups: [ "console.api.void.halo.run" ]
+    resources: [ "activity" ]
+    verbs: [ "get", "list" ]
+  - apiGroups: [ "void.halo.run" ]
+    resources: [ "voidvotes" ]
+    verbs: [ "get", "list" ]

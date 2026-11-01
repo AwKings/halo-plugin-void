@@ -1,0 +1,21 @@
+apiVersion: v1alpha1
+kind: Role
+metadata:
+  name: plugin-void-anonymous
+  labels:
+    halo.run/role-template: "true"
+    halo.run/hidden: "true"
+    rbac.authorization.halo.run/aggregate-to-anonymous: "true"
+  annotations:
+    rbac.authorization.halo.run/module: "VOID 互动"
+    rbac.authorization.halo.run/display-name: "匿名投票"
+rules:
+  # POST /apis/api.void.halo.run/v1alpha1/votes
+  - apiGroups: [ "api.void.halo.run" ]
+    resources: [ "votes" ]
+    verbs: [ "create" ]
+  # GET /apis/api.void.halo.run/v1alpha1/vote-stats
+  # 集合式 GET 在 Halo/K8s RBAC 中属于 list，单个资源才是 get
+  - apiGroups: [ "api.void.halo.run" ]
+    resources: [ "vote-stats" ]
+    verbs: [ "get", "list" ]
