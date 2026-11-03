@@ -2,7 +2,7 @@
 
 Typecho 主题 [VOID](https://github.com/AlanDecode/Typecho-Theme-VOID) 配套插件（`VOID-3.5.1/2.配套插件/VOID`）的 Halo 移植。
 
-移植者：awking。原作者：熊猫小A（https://blog.imalan.cn）。
+移植者：AwKings。原作者：熊猫小A（https://blog.imalan.cn）。
 
 移植说明（主题 + 插件一起讲）：https://blog.sanmizu.com/archives/halo-theme-void
 主题仓库：https://github.com/AwKings/halo-theme-void
