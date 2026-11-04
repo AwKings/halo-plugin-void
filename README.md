@@ -22,7 +22,7 @@ Typecho 主题 [VOID](https://github.com/AlanDecode/Typecho-Theme-VOID) 配套�
 | 互动记录表 `votes` | `VoidVote` 模型（含 IP、UA、标题、链接） | ✅ |
 | 后台「互动」面板 | Console 菜单「工具 → 访客互动」 | ✅ |
 | 浏览量 `viewsNum` | Halo 内核 `post.stats.visit` | ✅ 无需移植 |
-| 字数统计 `wordCount` | 主题侧 JS 统计正文（中文按字、英文按词） | ✅ |
+| 字数统计 `wordCount` | 插件统计正文并写入文章注解 `void_words`（汉字按字、拉丁字母数字按词，与主题前端同口径）；启动时全量补算、保存时增量更新，卡片与归档页读这个注解 | ✅ |
 | 评论归属地（17monipdb） | 未移植（需要 IP 库与后台 UI 扩展） | ❌ |
 | 图片宽高后缀 `#vwid/#vhei` | `ImageSizeProbe` 渲染时探测宽高（本地读文件头、远程取 HTTP 头并缓存），相册做 justified 排版 | 🔁 |
 | 图片排版 `[photos]` | `VoidContentParser` 服务端解析 + 宽高探测 | ✅ |
